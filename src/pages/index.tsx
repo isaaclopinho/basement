@@ -1,38 +1,39 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import Layout from '../components/templates/layout';
-import { getCategories } from '../services/categories';
+import { Category, getCategories } from '../services/categories';
 import styles from '../styles/Home.module.scss';
 
-const Home: NextPage = () => {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+export interface HomeProps {
+  categories: Category[];
+}
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const data = await getCategories();
-
-      if (data._hasError) {
-        setLoading(false);
-        return;
-      }
-
-      setLoading(false);
-      setCategories(data);
-    };
-
-    fetchCategories();
-  }, []);
-
+const StartGame = ({ categories }: HomeProps) => {
   return (
     <Layout>
       <div>
-        <div>Jogador</div>
-        <div>Categorias</div>
-        {loading ? <div>loading</div> : <div>{JSON.stringify(categories)}</div>}
+        <form>
+          <div>Jogador</div>
+          <input type="text" id="fname" name="fname" />
+          <div>Categorias</div>
+          <select id="dropdown">
+            {categories.map((cat) => (
+              <option value={cat.id} key={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+          <button>CLIQUE ME</button>
+        </form>
       </div>
     </Layout>
   );
 };
 
-export default Home;
+export async function getServerSideProps(context) {
+  const data = await getCategories();
+
+  return { props: { categories: data.categories } };
+}
+
+export default StartGame;
