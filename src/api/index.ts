@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { AxiosConnection, Payload } from './connection';
-import { GameConnection } from './game-connection';
+import GameConnection from './game-connection';
 
 export default class Api {
   private connection: AxiosConnection;

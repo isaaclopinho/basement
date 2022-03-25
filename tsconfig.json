@@ -18,7 +18,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".src/",
+    "baseUrl": "./src/",
+    "paths": {
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+    },
     "incremental": true
   },
   "exclude": [

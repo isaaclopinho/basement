@@ -7,7 +7,7 @@ import axios, {
   AxiosResponse,
 } from 'axios';
 
-export type Payload = Record<string, unknown> | null | undefined; // todo: add formdata to payload
+export type Payload = Record<string, unknown> | null | undefined;
 
 export abstract class AxiosConnection {
   connectionURL: string;

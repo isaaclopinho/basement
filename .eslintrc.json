@@ -21,9 +21,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "prettier",
-    "prettier/@typescript-eslint",
-    "prettier/react"
+    "prettier"
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
@@ -36,6 +34,7 @@
     "import/no-cycle": [0, { "ignoreExternal": true }],
     "prefer-const": "off",
     "no-use-before-define": "off",
+    "no-underscore-dangle": "off",
     "@typescript-eslint/no-use-before-define": [
       "error",
       { "functions": false, "classes": false, "variables": true }
