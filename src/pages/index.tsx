@@ -13,7 +13,7 @@ const StartGame = ({ categories }: HomeProps) => {
   useEffect(() => {
     const teste = async () => {
       console.log('abc');
-      const data = await getCategories('client');
+      const data = await getCategories();
       console.log(data);
     };
     teste();

@@ -1,69 +1,57 @@
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosConnection, Payload } from './connection';
+import { GameConnection } from './game-connection';
 
-export type Payload = Record<string, unknown> | null | undefined;
+export default class Api {
+  private connection: AxiosConnection;
 
-export default abstract class Api {
-  protected connection: AxiosInstance;
+  private static instance: Api;
 
-  constructor(baseURL: string) {
-    const config: AxiosRequestConfig = { timeout: 3000, baseURL };
+  public static getInstance(): Api {
+    if (this.instance == null) {
+      this.instance = new this();
+    }
 
-    this.connection = axios.create({
-      ...config,
-    });
-
-    this.connection.interceptors.response.use(
-      this.handleSuccess,
-      this.handleError
-    );
+    return this.instance;
   }
 
-  handleSuccess(response: AxiosResponse): AxiosResponse {
-    return response;
+  private constructor() {
+    this.connection = new GameConnection();
   }
 
-  handleError(error: AxiosError): Promise<never> {
-    return Promise.reject(error);
+  get(path: string, options = {}): Promise<AxiosResponse> {
+    return this.request(path, null, { ...options, method: 'GET' });
   }
 
-  abstract get(
-    path: string,
-    options?: AxiosRequestConfig
-  ): Promise<AxiosResponse>;
+  delete(path: string, options = {}): Promise<AxiosResponse> {
+    return this.request(path, null, { ...options, method: 'DELETE' });
+  }
 
-  abstract delete(
-    path: string,
-    options?: AxiosRequestConfig
-  ): Promise<AxiosResponse>;
+  patch(path: string, payload: Payload, options = {}): Promise<AxiosResponse> {
+    return this.request(path, payload, { ...options, method: 'PATCH' });
+  }
 
-  abstract patch(
-    path: string,
-    payload: Payload,
-    options?: AxiosRequestConfig
-  ): Promise<AxiosResponse>;
+  put(path: string, payload: Payload, options = {}): Promise<AxiosResponse> {
+    return this.request(path, payload, { ...options, method: 'PUT' });
+  }
 
-  abstract put(
-    path: string,
-    payload: Payload,
-    options?: AxiosRequestConfig
-  ): Promise<AxiosResponse>;
+  post(path: string, payload: Payload, options = {}): Promise<AxiosResponse> {
+    return this.request(path, payload, { ...options, method: 'POST' });
+  }
 
-  abstract post(
-    path: string,
-    payload: Payload,
-    options?: AxiosRequestConfig
-  ): Promise<AxiosResponse>;
-
-  abstract request(
+  request(
     path: string,
     payload: Payload,
     options: AxiosRequestConfig
-  ): Promise<AxiosResponse>;
+  ): Promise<AxiosResponse> {
+    const config: AxiosRequestConfig = {
+      responseType: 'json',
+      url: path,
+      data: payload,
+      ...options,
+      headers: { ...options?.headers, ...this.connection.headers() },
+    };
 
-  abstract headers(): Record<string, string | number | boolean>;
+    return this.connection.service.request(config);
+  }
 }
