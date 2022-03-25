@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import Layout from '../components/templates/layout';
 import { Category, getCategories } from '../services/categories';
+import { postRounds } from '../services/rounds';
 import styles from '../styles/Home.module.scss';
 
 export interface HomeProps {
@@ -9,6 +10,14 @@ export interface HomeProps {
 }
 
 const StartGame = ({ categories }: HomeProps) => {
+  useEffect(() => {
+    const teste = async () => {
+      console.log('abc');
+      const data = await getCategories('client');
+      console.log(data);
+    };
+    teste();
+  });
   return (
     <Layout>
       <div>

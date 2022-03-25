@@ -1,4 +1,4 @@
-import Api from '../../api';
+import ApiFactory, { ApiType } from '../../api/factory';
 
 export type PostRoundsPayload = {
   round: {
@@ -14,29 +14,39 @@ export type PostAnswerRoundsPayload = {
   };
 };
 
-export const getRounds = async (id: number) => {
+export const getRounds = async (id: number, type: ApiType = 'server') => {
   try {
-    const response = await Api.getInstance().get(`/rounds/${id.toString()}`);
+    const response = await ApiFactory.getInstance()
+      .getService(type)
+      .get(`/rounds/${id.toString()}`);
     return response.data;
   } catch (error) {
     return error;
   }
 };
 
-export const getRoundsResults = async (id: number) => {
+export const getRoundsResults = async (
+  id: number,
+  type: ApiType = 'server'
+) => {
   try {
-    const response = await Api.getInstance().get(
-      `/rounds/${id.toString()}/result`
-    );
+    const response = await ApiFactory.getInstance()
+      .getService(type)
+      .get(`/rounds/${id.toString()}/result`);
     return response.data;
   } catch (error) {
     return error;
   }
 };
 
-export const postRounds = async (payload: PostRoundsPayload) => {
+export const postRounds = async (
+  payload: PostRoundsPayload,
+  type: ApiType = 'server'
+) => {
   try {
-    const response = await Api.getInstance().post(`/rounds/`, payload);
+    const response = await ApiFactory.getInstance()
+      .getService(type)
+      .post(`/rounds/`, payload);
     return response.data;
   } catch (error) {
     return error;
@@ -45,13 +55,13 @@ export const postRounds = async (payload: PostRoundsPayload) => {
 
 export const postAnswerRounds = async (
   id: number,
-  payload: PostAnswerRoundsPayload
+  payload: PostAnswerRoundsPayload,
+  type: ApiType = 'server'
 ) => {
   try {
-    const response = await Api.getInstance().post(
-      `/rounds/${id.toString()}/answers`,
-      payload
-    );
+    const response = await ApiFactory.getInstance()
+      .getService(type)
+      .post(`/rounds/${id.toString()}/answers`, payload);
     return response.data;
   } catch (error) {
     return error;
