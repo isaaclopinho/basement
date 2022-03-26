@@ -4,6 +4,7 @@ import { postRounds } from 'services/rounds';
 import Layout from 'components/templates/layout';
 import { Category } from 'services/types';
 import getCategories from 'services/categories';
+import { notifyError } from 'utils/toasts';
 
 export interface StartGameProps {
   categories: Category[];
@@ -25,7 +26,7 @@ function StartGame({ categories, name }: StartGameProps) {
     });
 
     if (data._hasError) {
-      // exibe erro
+      notifyError('Algo deu errado! Tente novamente mais tarde...');
       setLoading(false);
       return;
     }
@@ -43,6 +44,8 @@ function StartGame({ categories, name }: StartGameProps) {
       }
 
       if (categoryId == null || !playerName) {
+        notifyError('Por favor, preencha os campos!');
+
         return;
       }
 

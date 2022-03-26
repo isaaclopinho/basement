@@ -4,6 +4,7 @@ import React, { useCallback, useMemo } from 'react';
 import { getRoundsResults } from 'services/rounds';
 import { Results as ResultsType } from 'services/types';
 import { getResultsPoints } from 'utils/questions';
+import redirects from 'utils/route';
 
 export interface ResultsProps {
   results: ResultsType;
@@ -31,8 +32,12 @@ function Results({ results }: ResultsProps) {
 }
 
 export async function getServerSideProps(context) {
-  const { query } = context;
+  const { query, res } = context;
   const results = await getRoundsResults(query.id ?? 0);
+
+  if (results._hasError) {
+    redirects(res, '/');
+  }
 
   return { props: { results } };
 }

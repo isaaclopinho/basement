@@ -4,6 +4,8 @@ import { Rounds } from 'services/types';
 import Layout from 'components/templates/layout';
 import { useRouter } from 'next/router';
 import { getQuestionsNotAnswered, getQuestionsStatus } from 'utils/questions';
+import redirects from 'utils/route';
+import { notifyError } from 'utils/toasts';
 
 export interface RoundsProps {
   rounds: Rounds;
@@ -32,6 +34,7 @@ function RoundsPage({ rounds }: RoundsProps) {
     });
 
     if (response._hasError) {
+      notifyError('Algo deu errado! Tente novamente mais tarde...');
       setLoading(false);
       return;
     }
@@ -41,7 +44,7 @@ function RoundsPage({ rounds }: RoundsProps) {
 
     setData(dataTmp);
     setLoading(false);
-  }, [alternativeSelected, currentQuestions, data, rounds.round.id]);
+  }, [alternativeSelected, currentQuestions, data, rounds]);
 
   useEffect(() => {
     if (!loading) {
@@ -54,9 +57,9 @@ function RoundsPage({ rounds }: RoundsProps) {
 
   useEffect(() => {
     if (answeredAll) {
-      router.push(`/rounds/${rounds.round.id}/results`);
+      router.push(`/rounds/${rounds.round?.id}/results`);
     }
-  }, [answeredAll, router, rounds.round.id]);
+  }, [answeredAll, router, rounds]);
 
   return (
     <Layout title="Quiz App">
@@ -95,8 +98,12 @@ function RoundsPage({ rounds }: RoundsProps) {
 }
 
 export async function getServerSideProps(context) {
-  const { query } = context;
+  const { query, res } = context;
   const rounds = await getRounds(query.id ?? 0);
+
+  if (rounds._hasError) {
+    redirects(res, '/');
+  }
 
   return { props: { rounds } };
 }
