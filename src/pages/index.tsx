@@ -30,9 +30,9 @@ function StartGame({ categories, name }: StartGameProps) {
       return;
     }
 
-    // iria para proxima pagina com id setado
+    router.push(`/rounds/${data.round.id}`);
     setLoading(false);
-  }, [categoryId, playerName]);
+  }, [categoryId, playerName, router]);
 
   useEffect(() => {
     if (!loading) {
