@@ -10,7 +10,8 @@
           "@api": "./src/api",
           "@pages": "./src/pages",
           "@hooks": "./src/hooks",
-          "@services": "./src/services"
+          "@services": "./src/services",
+          "@utils": "./src/utils"
         }
       }
     ]

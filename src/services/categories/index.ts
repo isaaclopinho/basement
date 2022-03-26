@@ -1,11 +1,6 @@
 import Api from 'api';
 
-export type Category = {
-  id: number;
-  name: string;
-};
-
-export const getCategories = async () => {
+export default async () => {
   try {
     const response = await Api.getInstance().get('/categories');
     return response.data;

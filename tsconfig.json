@@ -32,6 +32,9 @@
       "@services/*": [
         "./src/services/*"
       ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
     },
     "incremental": true
   },

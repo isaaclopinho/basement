@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { postRounds } from 'services/rounds';
-import { Category, getCategories } from 'services/categories';
 import Layout from 'components/templates/layout';
+import { Category } from 'services/types';
+import getCategories from 'services/categories';
 
 export interface StartGameProps {
   categories: Category[];
@@ -49,11 +50,7 @@ function StartGame({ categories, name }: StartGameProps) {
       return;
     }
 
-    if (categoryId == null) {
-      return;
-    }
-
-    if (!playerName) {
+    if (categoryId == null || !playerName) {
       return;
     }
 
