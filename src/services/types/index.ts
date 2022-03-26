@@ -24,3 +24,13 @@ export type Category = {
   id: number;
   name: string;
 };
+
+export type Results = {
+  round: {
+    id: number;
+    player_id: number;
+    total_answered_questions: number;
+    total_correct_answers: number;
+    total_questions: number;
+  };
+};
