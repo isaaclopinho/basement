@@ -45,7 +45,6 @@ function StartGame({ categories, name }: StartGameProps) {
 
       if (categoryId == null || !playerName) {
         notifyError('Por favor, preencha os campos!');
-
         return;
       }
 
