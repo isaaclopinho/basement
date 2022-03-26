@@ -18,7 +18,10 @@ function RoundsPage({ rounds }: RoundsProps) {
   const currentQuestions = useMemo(() => getQuestionsNotAnswered(data), [data]);
   const status = useMemo(() => getQuestionsStatus(data), [data]);
 
-  const answeredAll = currentQuestions.length === 0;
+  const answeredAll = useMemo(
+    () => currentQuestions.length === 0,
+    [currentQuestions]
+  );
 
   const answerQuestion = useCallback(async () => {
     const response = await postAnswerRounds(rounds.round.id, {
@@ -55,38 +58,38 @@ function RoundsPage({ rounds }: RoundsProps) {
     }
   }, [answeredAll, router, rounds.round.id]);
 
-  if (answeredAll) {
-    return <div />;
-  }
-
   return (
     <Layout title="Quiz App">
-      <div>
-        <h1>{`Round id: ${rounds.round.id}`}</h1>
-        <h1>{`corrects: ${status.corrects} / ${status.total}`}</h1>
-        <h1>{`Round player_id: ${rounds.round.player_id}`}</h1>
-        <p>{`Question description: ${currentQuestions[0].description}`}</p>
-        <p>{`Question id: ${currentQuestions[0].id}`}</p>
-        {currentQuestions[0].options.map((op, index) => {
-          const selectQuestion = () => {
-            if (loading) {
-              return;
-            }
+      {answeredAll ? (
+        <div />
+      ) : (
+        <div>
+          <h1>{`Round id: ${rounds.round.id}`}</h1>
+          <h1>{`corrects: ${status.corrects} / ${status.total}`}</h1>
+          <h1>{`Round player_id: ${rounds.round.player_id}`}</h1>
+          <p>{`Question description: ${currentQuestions[0].description}`}</p>
+          <p>{`Question id: ${currentQuestions[0].id}`}</p>
+          {currentQuestions[0].options.map((op, index) => {
+            const selectQuestion = () => {
+              if (loading) {
+                return;
+              }
 
-            setAlternativeSelected(op.id);
-            setLoading(true);
-          };
+              setAlternativeSelected(op.id);
+              setLoading(true);
+            };
 
-          return (
-            <button
-              type="button"
-              key={op.id}
-              disabled={loading}
-              onClick={selectQuestion}
-            >{`${String.fromCharCode(65 + index)} ${op.label}`}</button>
-          );
-        })}
-      </div>
+            return (
+              <button
+                type="button"
+                key={op.id}
+                disabled={loading}
+                onClick={selectQuestion}
+              >{`${String.fromCharCode(65 + index)} ${op.label}`}</button>
+            );
+          })}
+        </div>
+      )}
     </Layout>
   );
 }

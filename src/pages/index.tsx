@@ -34,28 +34,22 @@ function StartGame({ categories, name }: StartGameProps) {
     setLoading(false);
   }, [categoryId, playerName, router]);
 
-  useEffect(() => {
-    if (!loading) {
-      return;
-    }
+  const onSubmit = useCallback(
+    (e: React.ChangeEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    createRound();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+      if (loading) {
+        return;
+      }
 
-  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+      if (categoryId == null || !playerName) {
+        return;
+      }
 
-    if (loading) {
-      return;
-    }
-
-    if (categoryId == null || !playerName) {
-      return;
-    }
-
-    setLoading(true);
-  };
+      setLoading(true);
+    },
+    [categoryId, loading, playerName]
+  );
 
   const onChangePlayerName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +68,15 @@ function StartGame({ categories, name }: StartGameProps) {
     },
     []
   );
+
+  useEffect(() => {
+    if (!loading) {
+      return;
+    }
+
+    createRound();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
 
   return (
     <Layout title="Quiz App">
