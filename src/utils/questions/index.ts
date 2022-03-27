@@ -37,10 +37,10 @@ export const getQuestionsStatus = (rounds: Rounds) => {
 
 export const calculateStarsByPercentage = (p: number) => {
   const intervals = [
-    { min: 0, max: 0.25, stars: 0 },
-    { min: 0.25, max: 0.5, stars: 1 },
-    { min: 0.5, max: 0.75, stars: 2 },
-    { min: 0.75, max: 1, stars: 3 },
+    { min: 0, max: 0.33, stars: 0 },
+    { min: 0.33, max: 0.66, stars: 1 },
+    { min: 0.66, max: 0.95, stars: 2 },
+    { min: 0.95, max: 1, stars: 3 },
   ];
 
   for (let i = 0; i < intervals.length; i += 1) {

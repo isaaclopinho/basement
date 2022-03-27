@@ -4,12 +4,12 @@ import { Rounds } from 'services/types';
 import Layout from 'components/templates/layout';
 import { useRouter } from 'next/router';
 import { getQuestionsNotAnswered, getQuestionsStatus } from 'utils/questions';
-import redirects from 'utils/route';
 import { notifyError } from 'utils/toasts';
 import styles from 'styles/Rounds.module.scss';
 import Spinner from 'components/atoms/spinner';
 import AlternativeList from 'components/organisms/alternative-list';
 import Stepper from 'components/molecules/stepper';
+import { redirects } from 'utils/misc';
 
 export interface RoundsProps {
   rounds: Rounds;
