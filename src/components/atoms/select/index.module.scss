@@ -1,0 +1,16 @@
+.select {
+    border: 1px solid var(--black);
+    border-radius: 0.25em;
+    padding: 12px 20px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: var(--white);
+}
+
+.options{
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 16px;
+}

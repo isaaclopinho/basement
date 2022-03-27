@@ -1,19 +1,15 @@
 import React, { ReactElement } from 'react';
-import styles from './layout.module.scss';
+import styles from './index.module.scss';
 
 export interface PageTemplateProps {
   children: ReactElement;
-  title: string;
 }
 
-function Layout({ children, title = 'Quiz App' }: PageTemplateProps) {
+function Layout({ children }: PageTemplateProps) {
   return (
     <div className={styles['main-container']}>
-      <header>
-        <h1>{title}</h1>
-      </header>
       <main>
-        <div className={styles.test}>{children}</div>
+        <div className={styles.container}>{children}</div>
       </main>
     </div>
   );

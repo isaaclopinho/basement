@@ -5,6 +5,11 @@ import Layout from 'components/templates/layout';
 import { Category } from 'services/types';
 import getCategories from 'services/categories';
 import { notifyError } from 'utils/toasts';
+import Image from 'next/image';
+import BasicInput from 'components/molecules/basic-input';
+import Dropdown from 'components/molecules/dropdown';
+import Button from 'components/atoms/button';
+import styles from 'styles/StartGame.module.scss';
 
 export interface StartGameProps {
   categories: Category[];
@@ -81,35 +86,32 @@ function StartGame({ categories, name }: StartGameProps) {
   }, [loading]);
 
   return (
-    <Layout title="Quiz App">
-      <div>
-        <form onSubmit={onSubmit}>
-          <label htmlFor="player-name">
-            Jogador
-            <input
-              id="player-name"
-              type="text"
-              value={playerName}
-              onChange={onChangePlayerName}
-            />
-          </label>
-          <label htmlFor="categories-select">
-            Categorias
-            <select
-              id="categories-select"
-              value={categoryId}
-              onChange={onChangeCategory}
-            >
-              {categories.map((cat) => (
-                <option value={cat.id} key={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button type="submit" disabled={loading}>
-            {loading ? 'LOADING' : 'CLIQUE ME'}
-          </button>
+    <Layout>
+      <div className={styles.container}>
+        <div className={styles['mg-bt-lg']}>
+          <Image src="/logo2.png" width={181} height={236} />
+        </div>
+        <form onSubmit={onSubmit} className={styles.container}>
+          <BasicInput
+            title="Jogador"
+            id="player-name"
+            placeholder="Nome do jogador"
+            onChange={onChangePlayerName}
+            value={playerName}
+          />
+
+          <Dropdown
+            title="Categorias"
+            id="categories-select"
+            items={categories}
+            onChange={onChangeCategory}
+            value={categoryId}
+            className={styles['mg-bt-lg']}
+          />
+
+          <Button type="submit" disabled={loading}>
+            {loading ? 'CARREGANDO...' : 'INICIAR QUIZ'}
+          </Button>
         </form>
       </div>
     </Layout>

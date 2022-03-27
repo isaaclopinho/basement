@@ -1,0 +1,23 @@
+.button {
+    width: 100%;
+    background-color: var(--color-primary-dark);
+    color: var(--white);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    font-family: 'Mochiy Pop P One';
+    font-weight: 300;
+    font-size: 14px;
+
+    &:hover {
+        background-color: var(--color-primary);
+    }
+
+    &:disabled {
+        background-color: var(--color-disabled);
+    }
+}
+
