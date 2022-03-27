@@ -9,12 +9,12 @@
     border-radius: 8px;
     min-height: 32px;
 
-    margin-bottom: 12px;
+    margin-bottom:  var(--spacing-xmd);
 
-    font-family: 'Mochiy Pop P One';
-    font-weight: 300;
-    font-size: 14px;
-    padding: 0 0;
+    font-family: var(--font-family-mochiy);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-zero)  var(--spacing-zero);
 
     &:hover {
         background-color: var(--color-primary-dark);
@@ -31,7 +31,7 @@
 
 .letter{
     min-width: 10%;
-    padding: 0px 18px;
+    padding:  var(--spacing-zero) var(--spacing-md);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,7 +42,7 @@
 
 
 .description{
-    padding: 8px 20px;
+    padding:  var(--spacing-sm) var(--spacing-xmd);
     display: flex;
     justify-content: flex-start;
     overflow-wrap: break-word;

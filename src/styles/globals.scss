@@ -2,9 +2,9 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: Roboto;
+  padding: var(--spacing-zero);
+  margin: var(--spacing-zero);
+  font-family: var(--font-family-roboto);
   color: var(--white);
 }
 

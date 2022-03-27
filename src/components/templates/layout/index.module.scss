@@ -18,10 +18,9 @@
         overflow-y: auto;
 
         .container {
-        margin: auto;
-
+            margin: auto;
             background-color: var(--black-alpha-75);
-            padding: 24px;
+            padding: var(--spacing-xxmd);
             border-radius: 20px;
             word-wrap: break-word;
         }

@@ -22,30 +22,52 @@
     --color-error: #f5414f;
     --color-warning: #ffb703; 
     --color-disabled: #9c9c9c;
+
+    --font-size-sm: 14px;
+    --font-size-xsm: 16px;
+    --font-size-md: 18px;
+    --font-size-xmd: 20px;
+    --font-size-xxmd: 22px;
+    --font-size-lg: 24px;
+
+    --font-weight-regular: 500;
+    --font-weight-bold: 700;
+
+    --font-family-roboto: 'Roboto';
+    --font-family-mochiy: 'Mochiy Pop P One';
+
+    --spacing-zero: 0px;
+    --spacing-sm: 8px;
+    --spacing-xsm: 12px;
+    --spacing-md: 16px;
+    --spacing-xmd: 20px;
+    --spacing-xxmd: 24px;
+    --spacing-xxxmd: 28px;
+    --spacing-lg: 32px;
 }
 
 
 h1 {
-    font-family: 'Mochiy Pop P One';
-    font-size: 24px;
+    font-family: var(--font-family-mochiy);
+    font-size: var(--font-size-lg);
     color: var(--white);
     -webkit-text-stroke: 1px var(--color-primary);
 }
 
 h2 {
-    font-family: 'Mochiy Pop P One';
-    font-size: 22px;
+    font-family: var(--font-family-mochiy);
+    font-size: var(--font-size-xxmd);
     color: var(--white);
 }
 
 h3 {
-    font-family: 'Mochiy Pop P One';
-    font-size: 18px;
+    font-family: var(--font-family-mochiy);
+    font-size: var(--font-size-md);
     color: var(--white);
 }
 
 p {
-    font-family: 'Roboto';
-    font-weight: 500;
-    font-size: 16px;
+    font-family: var(--font-family-roboto);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-xsm);
 }
