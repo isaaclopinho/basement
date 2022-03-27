@@ -37,7 +37,6 @@ function StartGame({ categories, name }: StartGameProps) {
     }
 
     router.push(`/rounds/${data.round.id}`);
-    setLoading(false);
   }, [categoryId, playerName, router]);
 
   const onSubmit = useCallback(

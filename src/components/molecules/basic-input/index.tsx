@@ -11,6 +11,7 @@ export interface BasicInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   className?: string;
+  disabled?: boolean;
 }
 
 function BasicInput({
@@ -20,6 +21,7 @@ function BasicInput({
   onChange,
   value,
   className,
+  disabled,
 }: BasicInputProps) {
   return (
     <div className={`${styles['form-group']} ${className}`}>
@@ -29,6 +31,7 @@ function BasicInput({
         placeholder={placeholder}
         onChange={onChange}
         value={value}
+        disabled={disabled}
       />
     </div>
   );
@@ -36,10 +39,8 @@ function BasicInput({
 
 BasicInput.defaultProps = {
   className: null,
-};
-
-BasicInput.defaultProps = {
   placeholder: null,
+  disabled: false,
 };
 
 const propsAreEqual = (prev: BasicInputProps, next: BasicInputProps) => {

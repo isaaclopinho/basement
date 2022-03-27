@@ -11,6 +11,7 @@ export interface DropdownProps {
   value: number;
   items: Item[];
   className?: string;
+  disabled?: boolean;
 }
 
 function Dropdown({
@@ -20,17 +21,25 @@ function Dropdown({
   onChange,
   value,
   className,
+  disabled,
 }: DropdownProps) {
   return (
     <div className={`${styles['form-group']} ${className}`}>
       <Label htmlFor={id}>{title}</Label>
-      <Select id={id} onChange={onChange} value={value} items={items} />
+      <Select
+        id={id}
+        onChange={onChange}
+        value={value}
+        items={items}
+        disabled={disabled}
+      />
     </div>
   );
 }
 
 Dropdown.defaultProps = {
   className: null,
+  disabled: false,
 };
 
 const propsAreEqual = (prev: DropdownProps, next: DropdownProps) => {

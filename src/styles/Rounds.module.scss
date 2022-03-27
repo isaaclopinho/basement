@@ -1,0 +1,18 @@
+.question-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.points-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}

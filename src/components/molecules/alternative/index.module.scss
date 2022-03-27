@@ -1,0 +1,53 @@
+.alternative-container {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--white);
+    border: 2px solid var(--black);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    min-height: 40px;
+
+    margin-bottom: 12px;
+
+    font-family: 'Mochiy Pop P One';
+    font-weight: 300;
+    font-size: 14px;
+    padding: 0 0;
+
+    &:hover {
+        background-color: var(--color-primary-dark);
+        .letter{
+            background-color: var(--color-success-dark);
+        }
+    }
+
+    &:disabled {
+        background-color: var(--color-disabled);
+    }
+
+}
+
+.letter{
+    min-width: 10%;
+    padding: 0px 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color:  var(--color-success);
+    border-radius: 8px 0px 0px 8px;    
+}
+
+
+.description{
+    padding: 8px 20px;
+    display: flex;
+    justify-content: flex-start;
+    overflow-wrap: break-word;
+    text-align: left;
+    word-break: break-all;
+    word-wrap: break-word;
+    width: 90%;
+}

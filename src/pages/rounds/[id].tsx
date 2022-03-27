@@ -6,6 +6,9 @@ import { useRouter } from 'next/router';
 import { getQuestionsNotAnswered, getQuestionsStatus } from 'utils/questions';
 import redirects from 'utils/route';
 import { notifyError } from 'utils/toasts';
+import styles from 'styles/Rounds.module.scss';
+import Spinner from 'components/atoms/spinner';
+import AlternativeList from 'components/organisms/alternative-list';
 
 export interface RoundsProps {
   rounds: Rounds;
@@ -46,6 +49,18 @@ function RoundsPage({ rounds }: RoundsProps) {
     setLoading(false);
   }, [alternativeSelected, currentQuestions, data, rounds]);
 
+  const selectQuestion = useCallback(
+    (id: number) => {
+      if (loading) {
+        return;
+      }
+
+      setAlternativeSelected(id);
+      setLoading(true);
+    },
+    [loading]
+  );
+
   useEffect(() => {
     if (!loading) {
       return;
@@ -62,35 +77,29 @@ function RoundsPage({ rounds }: RoundsProps) {
   }, [answeredAll, router, rounds]);
 
   return (
-    <Layout title="Quiz App">
+    <Layout>
       {answeredAll ? (
-        <div />
+        <div className={styles['spinner-container']}>
+          <Spinner />
+        </div>
       ) : (
         <div>
-          <h1>{`Round id: ${rounds.round.id}`}</h1>
-          <h1>{`corrects: ${status.corrects} / ${status.total}`}</h1>
-          <h1>{`Round player_id: ${rounds.round.player_id}`}</h1>
-          <p>{`Question description: ${currentQuestions[0].description}`}</p>
-          <p>{`Question id: ${currentQuestions[0].id}`}</p>
-          {currentQuestions[0].options.map((op, index) => {
-            const selectQuestion = () => {
-              if (loading) {
-                return;
-              }
+          <div className={styles['points-container']}>
+            <p>
+              Pontuação:
+              <b>{` ${status.corrects}/${status.total}`}</b>
+            </p>
+          </div>
 
-              setAlternativeSelected(op.id);
-              setLoading(true);
-            };
+          <div className={styles['question-container']}>
+            <h1>{currentQuestions[0].description}</h1>
+          </div>
 
-            return (
-              <button
-                type="button"
-                key={op.id}
-                disabled={loading}
-                onClick={selectQuestion}
-              >{`${String.fromCharCode(65 + index)} ${op.label}`}</button>
-            );
-          })}
+          <AlternativeList
+            alternatives={currentQuestions[0].options}
+            disabled={loading}
+            onClick={selectQuestion}
+          />
         </div>
       )}
     </Layout>

@@ -1,7 +1,9 @@
+export type Option = { id: number; label: string };
+
 export type Question = {
   id: number;
   description: string;
-  options: { id: number; label: string }[];
+  options: Option[];
 };
 
 export type Answer = {
