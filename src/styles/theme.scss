@@ -44,30 +44,31 @@
     --spacing-xxmd: 24px;
     --spacing-xxxmd: 28px;
     --spacing-lg: 32px;
+
+    
+    h1 {
+        font-family: var(--font-family-mochiy);
+        font-size: var(--font-size-lg);
+        color: var(--white);
+        -webkit-text-stroke: 1px var(--color-primary);
+    }
+
+    h2 {
+        font-family: var(--font-family-mochiy);
+        font-size: var(--font-size-xxmd);
+        color: var(--white);
+    }
+
+    h3 {
+        font-family: var(--font-family-mochiy);
+        font-size: var(--font-size-md);
+        color: var(--white);
+    }
+
+    p {
+        font-family: var(--font-family-roboto);
+        font-weight: var(--font-weight-regular);
+        font-size: var(--font-size-xsm);
+    }
 }
 
-
-h1 {
-    font-family: var(--font-family-mochiy);
-    font-size: var(--font-size-lg);
-    color: var(--white);
-    -webkit-text-stroke: 1px var(--color-primary);
-}
-
-h2 {
-    font-family: var(--font-family-mochiy);
-    font-size: var(--font-size-xxmd);
-    color: var(--white);
-}
-
-h3 {
-    font-family: var(--font-family-mochiy);
-    font-size: var(--font-size-md);
-    color: var(--white);
-}
-
-p {
-    font-family: var(--font-family-roboto);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-xsm);
-}
