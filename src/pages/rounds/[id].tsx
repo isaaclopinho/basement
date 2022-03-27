@@ -9,6 +9,7 @@ import { notifyError } from 'utils/toasts';
 import styles from 'styles/Rounds.module.scss';
 import Spinner from 'components/atoms/spinner';
 import AlternativeList from 'components/organisms/alternative-list';
+import Stepper from 'components/molecules/stepper';
 
 export interface RoundsProps {
   rounds: Rounds;
@@ -84,6 +85,12 @@ function RoundsPage({ rounds }: RoundsProps) {
         </div>
       ) : (
         <div>
+          <Stepper
+            actives={status.current}
+            total={status.total}
+            colorActive={styles['color-active']}
+            colorInactive={styles['color-inactive']}
+          />
           <div className={styles['points-container']}>
             <p>
               Pontuação:

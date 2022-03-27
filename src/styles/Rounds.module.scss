@@ -16,3 +16,11 @@
     align-items: center;
     min-height: 300px;
 }
+
+.color-active{
+    background-color: var(--color-secondary);
+}
+
+.color-inactive{
+    background-color: var(--white);
+}
