@@ -16,7 +16,7 @@ export interface SelectProps
 
 function Select({ items, ...props }: SelectProps) {
   return (
-    <select {...props} className={styles.select}>
+    <select data-testid="select" className={styles.select} {...props}>
       {items.map((item) => (
         <option value={item.id} key={item.id}>
           {item.name}

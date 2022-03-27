@@ -9,6 +9,7 @@ export interface StepProps {
 function StepperItem({ colorClassName, isLast }: StepProps) {
   return (
     <div
+      data-testid="stepper-item"
       className={`${styles.step} ${colorClassName} ${
         isLast ? '' : styles.margin
       }`}

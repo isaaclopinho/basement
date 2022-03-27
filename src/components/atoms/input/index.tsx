@@ -7,7 +7,14 @@ export type InputProps = React.DetailedHTMLProps<
 >;
 
 function Input({ ...props }: InputProps) {
-  return <input {...props} className={styles.input} type="text" />;
+  return (
+    <input
+      data-testid="input"
+      className={styles.input}
+      {...props}
+      type="text"
+    />
+  );
 }
 
 export default memo(Input);

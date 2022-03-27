@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 
 function Spinner() {
   return (
-    <div className={styles['lds-ring']}>
+    <div data-testid="spinner" className={styles['lds-ring']}>
       <div />
       <div />
       <div />
