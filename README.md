@@ -1,3 +1,7 @@
+## Sobre o "Did you know?"
+
+Projeto feito para o Teste Técnico de Frontend Sênior da Basement.
+
 ## Iniciando
 
 Primeiro, instalar as dependências do projeto:
@@ -6,7 +10,7 @@ Primeiro, instalar as dependências do projeto:
     yarn
 ```
 
-Adicione as variáveis de ambiente como citado em .env.example
+Adicione as variáveis de ambiente como mostrado no arquivo .env.example
 
 E por fim, execute o projeto:
 
