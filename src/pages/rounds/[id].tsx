@@ -4,7 +4,7 @@ import { Rounds } from 'services/types';
 import Layout from 'components/templates/layout';
 import { useRouter } from 'next/router';
 import { getQuestionsNotAnswered, getQuestionsStatus } from 'utils/questions';
-import { notifyError } from 'utils/toasts';
+import { notifySuccess, notifyError } from 'utils/toasts';
 import styles from 'styles/Rounds.module.scss';
 import Spinner from 'components/atoms/spinner';
 import AlternativeList from 'components/organisms/alternative-list';
@@ -20,6 +20,10 @@ function RoundsPage({ rounds }: RoundsProps) {
   const [data, setData] = useState(rounds);
   const [loading, setLoading] = useState(false);
   const [alternativeSelected, setAlternativeSelected] = useState(-1);
+  const [indexHighlight, setIndexHighlight] = useState(-1);
+  const [correctHighlight, setCorrectHighlight] = useState<null | boolean>(
+    null
+  );
 
   const currentQuestions = useMemo(() => getQuestionsNotAnswered(data), [data]);
   const status = useMemo(() => getQuestionsStatus(data), [data]);
@@ -43,19 +47,31 @@ function RoundsPage({ rounds }: RoundsProps) {
       return;
     }
 
-    const dataTmp = { ...data };
-    dataTmp.round.answers.push(response.answer);
+    if (response.answer.correct) {
+      notifySuccess('Parabéns, você acertou a questão!');
+    } else {
+      notifyError('Que pena, você errou a questão!');
+    }
 
-    setData(dataTmp);
-    setLoading(false);
+    setCorrectHighlight(response.answer.correct);
+
+    setTimeout(() => {
+      const dataTmp = { ...data };
+      dataTmp.round.answers.push(response.answer);
+      setData(dataTmp);
+      setLoading(false);
+      setIndexHighlight(-1);
+      setCorrectHighlight(null);
+    }, 5000);
   }, [alternativeSelected, currentQuestions, data, rounds]);
 
   const selectQuestion = useCallback(
-    (id: number) => {
+    (id: number, index: number) => {
       if (loading) {
         return;
       }
 
+      setIndexHighlight(index);
       setAlternativeSelected(id);
       setLoading(true);
     },
@@ -106,6 +122,11 @@ function RoundsPage({ rounds }: RoundsProps) {
             alternatives={currentQuestions[0].options}
             disabled={loading}
             onClick={selectQuestion}
+            highlightQuestion={
+              correctHighlight != null
+                ? { index: indexHighlight, correct: correctHighlight }
+                : null
+            }
           />
         </div>
       )}

@@ -1,6 +1,5 @@
 .alternative-container {
     width: 100%;
-    background-color: var(--color-primary);
     color: var(--white);
     border: 2px solid var(--black);
     cursor: pointer;
@@ -11,23 +10,11 @@
     
     min-height: 50px;
     margin-bottom:  var(--spacing-xmd);
-
+    
     font-family: var(--font-family-mochiy);
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-sm);
     padding: var(--spacing-zero) var(--spacing-zero);
-
-    &:hover {
-        background-color: var(--color-primary-dark);
-        .letter{
-            background-color: var(--color-success-dark);
-        }
-    }
-
-    &:disabled {
-        background-color: var(--color-disabled);
-    }
-
 }
 
 .letter{
@@ -42,7 +29,6 @@
 
 
 .description{
-
     padding: var(--spacing-sm) var(--spacing-xmd);
     display: flex;
     justify-content: flex-start;
@@ -50,4 +36,40 @@
     text-align: left;
     word-break: break-all;
     word-wrap: break-word;
+}
+
+.default {
+    background-color: var(--color-primary);
+    &:hover {
+        background-color: var(--color-primary-dark);
+        .letter{
+            background-color: var(--color-success-dark);
+        }
+    }
+
+    &:disabled {
+        background-color: var(--color-disabled);
+
+        .letter{
+            background-color: var(--color-success);
+        }
+    }
+}
+
+
+
+.correct {
+    background-color: var(--color-success-dark);
+
+    &:hover,:disabled {
+        background-color: var(--color-success-dark);
+    }
+}
+
+.wrong {
+    background-color: var(--color-error);
+
+    &:hover,:disabled {
+        background-color: var(--color-error);
+    }
 }

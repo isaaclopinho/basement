@@ -13,6 +13,7 @@ describe('It renders properly', () => {
           { id: 3, label: 'label' },
         ]}
         onClick={(id) => id}
+        highlightQuestion={{ index: 0, correct: true }}
       />
     );
 

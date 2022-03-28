@@ -10,6 +10,7 @@ describe('It renders properly', () => {
         description="Alternativa 1"
         onClick={jest.fn()}
         disabled={false}
+        type="default"
       />
     );
 
@@ -27,6 +28,7 @@ describe('It renders properly', () => {
         description="Alternativa 1"
         onClick={jest.fn()}
         disabled={false}
+        type="default"
       />
     );
 

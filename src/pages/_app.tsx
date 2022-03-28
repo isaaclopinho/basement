@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Did you know?</title>
       </Head>
       <Component {...pageProps} />
-      <ToastContainer />
+      <ToastContainer autoClose={4000} />
     </>
   );
 }

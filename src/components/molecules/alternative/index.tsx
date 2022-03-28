@@ -1,24 +1,40 @@
-import Button from 'components/atoms/button';
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import styles from './index.module.scss';
+
+export type AlternativeType = 'default' | 'correct' | 'wrong';
 
 export interface AlternativeProps {
   index?: number;
   description: string;
   onClick: (e) => void;
   disabled?: boolean;
+  type?: AlternativeType;
 }
+
+const getClassNameByType = (type: AlternativeType): string => {
+  switch (type) {
+    case 'correct':
+      return 'correct';
+    case 'wrong':
+      return 'wrong';
+    default:
+      return 'default';
+  }
+};
 
 function Alternative({
   index,
   description,
   onClick,
   disabled,
+  type,
 }: AlternativeProps) {
+  const classType = useMemo(() => getClassNameByType(type), [type]);
+
   return (
-    <Button
+    <button
       type="button"
-      className={styles['alternative-container']}
+      className={`${styles['alternative-container']} ${styles[classType]}`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -28,13 +44,14 @@ function Alternative({
       <div className={styles.description}>
         <p>{`${description}`}</p>
       </div>
-    </Button>
+    </button>
   );
 }
 
 Alternative.defaultProps = {
   index: 0,
   disabled: false,
+  type: 'default',
 };
 
 const propsAreEqual = (prev: AlternativeProps, next: AlternativeProps) => {
@@ -43,6 +60,7 @@ const propsAreEqual = (prev: AlternativeProps, next: AlternativeProps) => {
     'disabled',
     'index',
     'onClick',
+    'type',
   ];
   return propsToCompare.every((prop) => prev[prop] === next[prop]);
 };
