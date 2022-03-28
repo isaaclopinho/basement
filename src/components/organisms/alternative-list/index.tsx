@@ -15,7 +15,7 @@ function AlternativeList({
   disabled,
 }: AlternativeListProps): JSX.Element {
   return (
-    <div className={styles.main}>
+    <div className={styles.main} data-testid="list">
       {alternatives.map((option, index) => (
         <Alternative
           key={option.id}

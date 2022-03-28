@@ -9,8 +9,8 @@ export interface StarsProps {
 
 function Stars({ actives }: StarsProps) {
   return (
-    <div data-testid="stars-container" className={styles.margin}>
-      <div className={styles.stars}>
+    <div className={styles.margin}>
+      <div data-testid="stars-container" className={styles.stars}>
         {[...new Array(3)].map((_, index) => {
           const size = index === 1 ? 150 : 100;
           return (
