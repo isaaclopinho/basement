@@ -26,7 +26,7 @@ function Alternative({
         <h2>{String.fromCharCode(65 + index)}</h2>
       </div>
       <div className={styles.description}>
-        <p>{description}</p>
+        <p>{`${description}`}</p>
       </div>
     </Button>
   );

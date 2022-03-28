@@ -24,7 +24,10 @@ function BasicInput({
   disabled,
 }: BasicInputProps) {
   return (
-    <div className={`${styles['form-group']} ${className}`}>
+    <div
+      data-testid="input-container"
+      className={`${styles['form-group']} ${className}`}
+    >
       <Label htmlFor={id}>{title}</Label>
       <Input
         id={id}

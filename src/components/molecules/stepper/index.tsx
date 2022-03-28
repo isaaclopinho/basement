@@ -11,7 +11,7 @@ export interface StepperProps {
 
 function Stepper({ colorActive, colorInactive, total, actives }: StepperProps) {
   return (
-    <div className={styles.stepper}>
+    <div data-testid="stepper" className={styles.stepper}>
       {[...new Array(total)].map((_, index) => (
         <StepperItem
           key={index}

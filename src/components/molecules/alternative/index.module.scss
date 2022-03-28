@@ -4,17 +4,18 @@
     color: var(--white);
     border: 2px solid var(--black);
     cursor: pointer;
-    display: flex;
+    display: grid;
+    grid-template-columns: 10% 90%;
     align-items: center;
     border-radius: 8px;
-    min-height: 32px;
-
+    
+    min-height: 50px;
     margin-bottom:  var(--spacing-xmd);
 
     font-family: var(--font-family-mochiy);
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-sm);
-    padding: var(--spacing-zero)  var(--spacing-zero);
+    padding: var(--spacing-zero) var(--spacing-zero);
 
     &:hover {
         background-color: var(--color-primary-dark);
@@ -30,24 +31,23 @@
 }
 
 .letter{
-    min-width: 10%;
-    padding:  var(--spacing-zero) var(--spacing-md);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    padding: var(--spacing-zero) var(--spacing-md);
     height: 100%;
-    background-color:  var(--color-success);
+    background-color: var(--color-success);
     border-radius: 8px 0px 0px 8px;    
 }
 
 
 .description{
-    padding:  var(--spacing-sm) var(--spacing-xmd);
+
+    padding: var(--spacing-sm) var(--spacing-xmd);
     display: flex;
     justify-content: flex-start;
     overflow-wrap: break-word;
     text-align: left;
     word-break: break-all;
     word-wrap: break-word;
-    width: 90%;
 }

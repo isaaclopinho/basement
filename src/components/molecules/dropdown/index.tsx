@@ -24,7 +24,10 @@ function Dropdown({
   disabled,
 }: DropdownProps) {
   return (
-    <div className={`${styles['form-group']} ${className}`}>
+    <div
+      data-testid="dropdown-container"
+      className={`${styles['form-group']} ${className}`}
+    >
       <Label htmlFor={id}>{title}</Label>
       <Select
         id={id}
