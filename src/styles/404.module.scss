@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    text-align: center;
+}
+
+.font{
+    font-size: 80px;
+    font-family: var(--font-family-mochiy);
+    color: var(--white);
+    -webkit-text-stroke: 1px var(--color-primary);
+}
